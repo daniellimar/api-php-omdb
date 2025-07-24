@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\{MovieFilterRequest, MovieShowRequest};
 use App\Models\Movie;
-use Illuminate\Http\Request;
 
 /**
  * @OA\Info(
@@ -80,7 +80,7 @@ class MovieController extends Controller
      *     )
      * )
      */
-    public function index(Request $request)
+    public function index(MovieFilterRequest $request)
     {
         $query = Movie::query();
 
@@ -122,7 +122,7 @@ class MovieController extends Controller
      *     )
      * )
      */
-    public function show($id)
+    public function show(MovieShowRequest $request, $id)
     {
         $movie = Movie::find($id);
 

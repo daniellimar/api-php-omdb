@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
  *     version="1.0.0",
  *     description="Documentação da API para gerenciamento de filmes"
  * )
-
  * @OA\Schema(
  *     schema="Movie",
  *     type="object",
@@ -125,7 +124,18 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        $movie = Movie::findOrFail($id);
-        return response()->json($movie);
+        $movie = Movie::find($id);
+
+        if (!$movie) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Filme não encontrado.',
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $movie,
+        ], 200);
     }
 }

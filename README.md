@@ -109,6 +109,14 @@ Execute o comando abaixo para rodar as migrações do banco de dados:
 
 ---
 
+## Iniciando o Servidor Local
+
+### ``php artisan serve``
+
+#### Host: http://127.0.0.1:8000
+
+---
+
 ## Endpoints da API
 
 ### `GET /api/movies`
@@ -186,10 +194,15 @@ durante os testes.
 #### MYSQL: Defina a variável MYSQL no seu arquivo `.env-testing    `:
 
 #### DB_CONNECTION=mysql
+
 #### DB_HOST=127.0.0.1
+
 #### DB_PORT=3306
+
 #### DB_DATABASE=api-php-omdb
+
 #### DB_USERNAME=
+
 #### DB_PASSWORD=
 
 ---
@@ -197,3 +210,11 @@ durante os testes.
 ## Para executar os testes, use o comando:
 
 ### `` php artisan test ``
+
+#### Em caso de falhas inicias no comando anterior, verifique o cache do Laravel e limpe-o com os seguintes comandos:
+
+```
+php artisan config:clear
+php artisan cache:clear
+php artisan config:cache
+```

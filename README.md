@@ -5,9 +5,25 @@
 - Laravel >= 10
 - Banco de Dados (MySQL)
 
-Certifique-se de que a extensão `pdo_mysql` está habilitada no seu ambiente PHP:
+Certifique-se de que as extensões `pdo_mysql` e `mbstring` estão habilitadas no seu ambiente PHP:
 
 ### `` extension=pdo_mysql``
+
+### `` extension=mbstring``
+
+## Instalando as extensões no Linux
+
+### `` sudo apt-get install php-mbstring``
+
+### `` sudo apt-get install php-mysql``
+
+###
+
+### Se estiver usando o PHP embutido
+
+#### ``sudo service apache2 restart # Se for Apache``
+
+#### ``sudo service php8.x-fpm restart # Se for PHP-FPM (ajuste a versão conforme necessário, como php8.3-fpm) ``
 
 ---
 
@@ -150,3 +166,34 @@ http://127.0.0.1:8000/api/documentation
         "updated_at": "2025-07-24T14:01:00.000000Z"
     }
 ]
+```
+
+---
+
+### Testes
+
+Antes de rodar os testes, é importante gerar a chave de aplicação específica para o ambiente de testes (testing).
+
+#### Execute o seguinte comando para gerar a chave no arquivo .env.testing:
+
+`` php artisan key:generate --env=testing ``
+
+Esse comando cria a variável APP_KEY no arquivo .env.testing, garantindo que a criptografia funcione corretamente
+durante os testes.
+
+---
+
+#### MYSQL: Defina a variável MYSQL no seu arquivo `.env-testing    `:
+
+#### DB_CONNECTION=mysql
+#### DB_HOST=127.0.0.1
+#### DB_PORT=3306
+#### DB_DATABASE=api-php-omdb
+#### DB_USERNAME=
+#### DB_PASSWORD=
+
+---
+
+## Para executar os testes, use o comando:
+
+### `` php artisan test ``
